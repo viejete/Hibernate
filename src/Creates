@@ -1,0 +1,31 @@
+CREATE SEQUENCE serial;
+CREATE SEQUENCE serialOwner;
+
+CREATE TABLE PET (
+  id INT PRIMARY KEY DEFAULT nextval('serial'),
+  canBattle BOOLEAN DEFAULT NULL,
+  name VARCHAR(30) DEFAULT NULL,
+  family VARCHAR(15) DEFAULT NULL,
+  icon VARCHAR(30) DEFAULT NULL,
+  strongAgainst VARCHAR(20) DEFAULT NULL,
+  weakAgainst VARCHAR(20) DEFAULT NULL,
+  typeId INT DEFAULT NULL,
+  petQualityId INT DEFAULT NULL,
+  health INT DEFAULT NULL,
+  power INT DEFAULT NULL,
+  speed INT DEFAULT NULL
+);
+
+  CREATE TABLE OWNER (
+    id INT PRIMARY KEY DEFAULT nextval('serialOwner'),
+    firstName VARCHAR(15) DEFAULT NULL,
+    lastName VARCHAR(15) DEFAULT NULL,
+    race VARCHAR(15) DEFAULT NULL
+  );
+
+
+  CREATE TABLE OWN_PET (
+    owner_id INT NOT NULL,
+    pet_id INT NOT NULL,
+    PRIMARY KEY (owner_id,pet_id)
+  );

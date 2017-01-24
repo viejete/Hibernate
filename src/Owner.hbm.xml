@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="Owner" table="OWNER">
+        <meta attribute="class-description">
+            This class contains the owner details.
+        </meta>
+        <id name="id" type="int" column="id">
+            <generator class="increment"/>
+        </id>
+        <set name="pets" cascade="save-update" table="OWN_PET">
+            <key column="owner_id" />
+            <many-to-many column="pet_id" class="Pet" />
+        </set>
+        <property name="firstName" column="firstname" type="string"/>
+        <property name="lastName" column="lastname" type="string"/>
+        <property name="race" column="race" type="string"/>
+    </class>
+
+    <class name="Pet" table="PET">
+        <meta attribute="class-description">
+            This class contains the pet details.
+        </meta>
+        <id name="id" type="int" column="id">
+            <generator class="increment" />
+        </id>
+        <property name="canBattle" column="canBattle" type="boolean" />
+        <property name="name" column="name" type="string" />
+        <property name="family" column="family" type="string"/>
+        <property name="icon" column="icon" type="string" />
+        <property name="strongAgainst" column="strongAgainst" type="string" />
+        <property name="weakAgainst" column="weakAgainst" type="string" />
+        <property name="typeId" column="typeId" type="int" />
+        <property name="petQualityId" column="petQualityId" type="int" />
+        <property name="health" column="health" type="int" />
+        <property name="power" column="power" type="int" />
+        <property name="speed" column="speed" type="int" />
+    </class>
+</hibernate-mapping>
